@@ -1,0 +1,207 @@
+<style>
+body
+{
+	margin: 0;
+	padding: 0;
+	font-family: Century Gothic;	
+	background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("https://images.pexels.com/photos/6267/menu-restaurant-vintage-table.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+	height: 95vh;
+	background-size: cover;
+	background-position: center;
+}
+
+
+ul
+{
+	float: right;
+	list-style-type: none;
+	margin-top: 25px;
+}
+
+ul li
+{
+	display: inline-block;
+
+}
+
+ul li a
+{
+	text-decoration-style: none;
+	color: #fff;
+	padding:20px 20px;
+	border: 1px solid transparent;
+	transition: 0.6s ease;
+}
+ul li a:hover
+{
+	background-color: #fff;
+	color:#000;
+}
+.title
+{
+	color: #fff;
+	padding: 20px;
+	font-size: 60px;
+	top: 10%;
+	left: 60%;
+	text-align: center;
+}
+
+.name
+{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.name h1
+{
+	color: #fff;
+	font-size: 35px;
+	text-align: center;
+}
+.wrapper{
+   height: 500px;
+   position: absolute;
+   top: 100%;
+   left: 50%;
+   transform: translate(-50%,-50%);
+   width: 800px;
+   display: flex;
+   box-shadow: 0 1px 20px 0 rgba(69,90,100,.08);
+ }
+ 
+ .wrapper .left{
+   width: 35%;
+   background: linear-gradient(to right,#FF7F50,#FF7F50);
+   padding: 80px 25px;
+   border-top-left-radius: 5px;
+   border-bottom-left-radius: 5px;
+   text-align: center;
+   color: #fff;
+ }
+ 
+ .wrapper .left h1{
+     font-size: 20px;
+     text-align: left;
+     padding: 100px 25px;  
+ }
+ 
+ 
+ 
+ .wrapper .right{
+   width: 65%;
+   background: #fff;
+   padding: 30px 25px;
+   border-top-right-radius: 5px;
+   border-bottom-right-radius: 5px;
+ }
+ 
+ .wrapper .right .info,
+ .wrapper .right .personal_info,
+ .wrapper .right .otherinfo{
+   margin-bottom: 25px;
+ }
+ 
+ .wrapper .right .info h3{
+     margin-bottom: 15px;
+     padding-bottom: 5px;
+     border-bottom: 1px solid #e0e0e0;
+     color: #353c4e;
+   text-transform: uppercase;
+   letter-spacing: 5px;
+ }
+ 
+ .wrapper .right .info_data,
+ .wrapper .right .personal_data,
+ .wrapper .right .other_info_data{
+   display: flex;
+   justify-content: space-between;
+ }
+ 
+ .wrapper .right .info_data .data,
+ .wrapper .right .personal_data .data,
+ .wrapper .right .other_info_data .data{
+   width: 45%;
+ }
+ 
+ .wrapper .right .info_data .data h4,
+ .wrapper .right .personal_data .data h4,
+ .wrapper .right .other_info_data .data h4{
+     color: #353c4e;
+     margin-bottom: 5px;
+ }
+ 
+ .wrapper .right .info_data .data p,
+ .wrapper .right .personal_data .data p,
+ .wrapper .right .other_info_data .data p{
+   font-size: 13px;
+   margin-bottom: 10px;
+   color: #919aa3;
+ }
+</style>
+<form action="/users/home" method="POST">
+      			<ul>
+					  <li><a href="/users/package">PACKAGES</a></li>	
+					  <li><a href="/travelagents/agents">TRAVEL AGENTS</a></li>
+					  <li><a href="/queries/typequery">Search for queries</a></li>
+					  <li><a href="/users/logout">LOGOUT</a></li>
+				  </ul>
+				  </form>
+				
+      		<div class="title">
+      			<h1>JUST TRAVEL</h1>
+      		</div>
+      		<div class="name">
+				  <h1>WELCOME!!!</h1>
+			  </div>   
+			  <div class="wrapper">
+				<div class="left">
+					<h1>YOUR PROFILE</h1>
+				</div>
+				<div class="right">
+					<div class="info">
+						<h3>DETAILS</h3>
+						<div class="info_data" style="position:relative; left:20px; top:40px;" >
+							 <div class="data">
+								<h4>YOUR ID</h4>
+								<p><%= data[0].cid %> </p> 
+							 </div>
+							 <div class="data">
+							   <h4>YOUR NAME</h4>
+								<p><%= data[0].name %></p>
+						  </div>
+						</div>
+					</div>
+				  
+				  <div class="personal_info" style="position:relative; left:20px; top:60px;">
+						<div class="personal_data">
+							 <div class="data">
+								<h4>AGE</h4>
+								<p><%= data[0].age %></p>
+							 </div>
+							 <div class="data">
+							   <h4>GENDER</h4>
+								<p><%= data[0].gender %></p>
+						  </div>
+						  <div class="data">
+							<h4>ADDRESS</h4>
+							<p><%= data[0].address %></p>
+						  </div>
+						</div>
+					</div>
+				  
+					<div class="otherinfo" style="position: relative; left: 20px; top: 100px;">
+						<div class="other_info_data">
+						  <div class="data">
+							<h4>EMAIL</h4>
+							<p><%= data[0].email %></p>
+						  </div>
+						  <div class="data">
+							<h4>PHONE NUMBER</h4>
+							<p><%= data[0].phone_no %></p>
+						  </div>
+				  </div>
+				</div>
+      

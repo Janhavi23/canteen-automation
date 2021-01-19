@@ -1,0 +1,81 @@
+    <style>
+        body {
+    background-image: url("https://images.pexels.com/photos/2007401/pexels-photo-2007401.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500");
+    background-size: cover;
+    overflow-y: scroll;
+        }
+        
+
+.container {
+    width: 340px;
+    height: 500px;
+    border: 3px solid black;
+    border-style: solid;
+    margin: 100px 550px;
+    padding: 20px;
+}
+
+input[type=number] {
+    width: 300px;
+    height: 6px;
+    border: 2px solid black;
+    background-color: transparent;
+    border-radius: 5px;
+    font-family: "Exo", sans-serif;
+    font-size: 16px;
+    padding: 12px;
+    margin: 4px;
+}
+
+input[type=date] {
+    width: 300px;
+    height: 8px;
+    background-color: transparent;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: "Exo", sans-serif;
+    font-size: 16px;
+    padding: 12px;
+    margin: 4px;
+}
+
+button[type=submit] {
+    background-color: gray;
+    height: 40px;
+    width: 320px;
+    color: white;
+    border: none;
+    text-align: center;
+    font-family: "Exo", sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 12px;
+    margin: 6px;
+}
+
+button[type=submit]:hover {
+    background-color: dimgray;
+}
+
+table{
+   text-align: top-right;
+}
+    </style>
+        <form  align="left">
+            <h1 align="center">Booking</h1>
+            <br>     
+            <form action="/users/booking" method="POST">
+            <input type="number" id="bid" name="bid" placeholder="Enter booking id..." value="<%= typeof bid != 'undefined' ? bid : '' %>">
+            <br><br> 
+            <input type="date" id="b_date" name="b_date" placeholder="Enter date..."value="<%= typeof b_date != 'undefined' ? b_date : '' %>">
+            <br><br>      
+            <input type="number" id="cid" name="cid" placeholder="Enter customer id..."value="<%= typeof cid != 'undefined' ? cid : '' %>">
+            <br><br>
+            <input type="number" id="aid" name="aid" placeholder="Enter agent id..."value="<%= typeof aid != 'undefined' ? aid : '' %>">
+            <br><br>
+            <input type="number" id="pid" name="pid" placeholder="Enter package id..."value="<%= typeof pid != 'undefined' ? pid : '' %>">
+            <br><br>                        
+            <input type="number" id="no_of_ppl" name="no_of_ppl" placeholder="Enter no. of people..."value="<%= typeof no_of_ppl != 'undefined' ? no_of_ppl : '' %>">
+            <br><br>
+            <button type="submit"><a href="/users/booking">Confirm Booking</a></button>
+            </form>

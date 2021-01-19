@@ -1,0 +1,31 @@
+<style>
+    table{
+        border-collapse: collapse;
+        width: 100%;
+        color: #d96459;
+        font-family: monospace;
+        font-size: 25px;
+        text-align: left;
+    }
+    th{
+        background-color: #d96459;
+        color: white;
+    }
+</style>
+<table>
+    <thead>
+        <tr>   
+        <% for(let head in data[0]){ %>
+           <th><%= head %></th>
+           <% } %>
+        </tr>
+    </thead>
+    <tbody>
+        <% for(let row in data){ %>
+           <tr><% for(let column in data[row]){ %>
+           <td><%= data[row][column]  %></td>
+       <% } %>
+           </tr>
+       <% } %>
+    </tbody>
+</table>

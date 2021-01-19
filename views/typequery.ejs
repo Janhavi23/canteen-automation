@@ -1,0 +1,82 @@
+<style>
+  body {
+background-image: url("https://s.marketwatch.com/public/resources/images/MW-HE536_airpla_ZH_20190225131547.jpg");
+position: absolute;
+margin: 0%;
+padding: 0;
+max-height: 100%;
+max-width: 100%;
+background-size: cover;
+}
+
+
+
+.search-box{
+  position: absolute;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 10%;
+
+          height: 40px;
+          width: 20%;
+          background-color: black;
+          border-radius: 40px;
+          padding: 10px;
+          transition: 0.4s;
+          overflow: hidden;
+}
+
+button[type=submit] {
+  background-color: gray;
+  height: 40px;
+  width: 320px;
+  color: white;
+  border: none;
+  text-align: center;
+  font-family: "Exo", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 12px;
+  margin: 6px;
+}
+.search-text{
+line-height: 35px;
+background:black;
+border-style: none;
+
+color: white;
+outline: none;
+transition:0.4s;
+float:left;
+width:0;
+font-size:18px;
+padding:0;
+}
+
+.search-txt:hover{
+cursor:text;
+}
+
+button[type=submit]:hover {
+  background-color: dimgray;
+}
+
+.box {
+  width: 340px;
+  height: 310px;
+  margin: 100px 550px;
+  padding: 20px;
+}
+
+</style>
+
+
+</head>
+<body>
+<form action="/queries/typequery" method="POST" class="box">
+  <div class="search-box">
+    <input type="text" class="search-txt" name="query" id="query" placeholder="Enter the query to search" ><br><br>
+  </div>
+  
+  <button type="submit"><a href=/queries/result><b>Click</b></a></button>
+  </form>
