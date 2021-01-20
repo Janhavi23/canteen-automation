@@ -20,12 +20,9 @@ router.get('/register',(req,res)=>res.render('register'));
 router.get('/home', (req, res)=>res.render('home'));
 
 //package page
-router.get('/package',function(req,res){
-    connection.query('Select * from package',(err,result)=>{
-        if(err) throw err;
-        res.render('package',{data: result});
-    });
-})
+router.get('/package',(req,res)=>
+        res.render('package'));
+
 
 //destination page
 router.get('/destination',function(req,res){
@@ -38,7 +35,7 @@ router.get('/destination',function(req,res){
 
 
 //booking page
-router.get('/booking',(req,res)=>res.render('booking'));
+router.get('/bill',(req,res)=>res.render('bill'));
 
 //logout page
 router.get('/logout',(req,res)=>res.render('welcome'));
@@ -101,9 +98,7 @@ router.post('/register', (req, res)=>{
     }
 });
 
-router.post('/package',(req,res)=>{
-    res.redirect('/users/book');
-})
+
 
 router.post('/home',(req,res)=>{
     res.redirect('/users/package');

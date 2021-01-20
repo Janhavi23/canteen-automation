@@ -1,282 +1,189 @@
-<link href='https://fonts.googleapis.com/css?family=Marko One' rel='stylesheet'>
-    <style>
-        *,
-        *::before,
-        *::after{
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
+<style>
+    /* Pen-specific styles */
+* {
+  box-sizing: border-box;
+}
+body {
+  font-size: 1.25rem;
+  font-family: sans-serif;
+  line-height: 150%;
+  text-shadow: 0 2px 2px #b6701e;
+}
+
+section {
+  color: #fff;
+  text-align: center;
+}
+
+div {
+  height: 100%;
+}
+
+article {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.75rem 0;
+}
+
+/* Pattern styles */
+.container {
+  display: table;
+  width: 100%;
+}
+
+.left-half {
+  background-color: #ff9e2c;
+  position: absolute;
+  left: 0px;
+  width: 60%;
+}
+
+.right-half {
+  background-color: #b6701e;
+  position: absolute;
+  right: 0px;
+  width: 40%;
+}
+#customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+</style>
+    <div class="right-half">
+        <select id="foods" name="foods">
+            <option>Enter your choice</option>
+          </select>
+        <button onclick="addRow()">Add item</button><br/><br/>
+        <button onclick="handlebill()">Generate bill</button>
+
+        <table border="1">           
+            <tr>
+                <th>Your order</th>
+            </tr>   
+        </table>
+    </div>
+
+    <div class="left-half">
+            <section class="container">
+                <h2>MENU</h2>
+          <div class="left-half">
+            <table id="customers">
+                <tr>
+                  <th>IMAGE</th>
+                  <th>NAME</th>
+                  <th>PRICE</th>
+                </tr>
+                <tr>
+                  <td><img src="https://static.toiimg.com/thumb/54408184.cms?imgsize=148310&width=800&height=800" border=3 height=100 width=100></td></img></td>
+                  <td>Paneer tikka masala</td>
+                  <td>50</td>
+                  </td>
+                </tr>
+                <tr>
+                    <td><img src="https://www.cookwithmanali.com/wp-content/uploads/2020/05/Masala-Dosa-500x500.jpg" border=3 height=100 width=100></td></img></td>
+                    <td>Masala Dosa</td>
+                    <td>30</td>
+                </tr>
+                <tr>
+                    <td><img src="https://i.ndtvimg.com/i/2018-01/rice-idli_620x330_71514979375.jpg" border=3 height=100 width=100></td></img></td>
+                    <td>Idli</td>
+                    <td>35</td>   
+                </tr>
+                <tr>
+                    <td><img src="https://static.toiimg.com/thumb/75581339.cms?width=1200&height=900" border=3 height=100 width=100></td></img></td>
+                    <td>Fried rice</td>
+                    <td>70</td>
+                </tr>
+                <tr>
+                    <td><img src="https://cdn-a.william-reed.com/var/wrbm_gb_food_pharma/storage/images/publications/food-beverage-nutrition/beveragedaily.com/article/2020/01/31/what-next-for-lipton-and-pg-tips-unilever-s-strategic-tea-review/10657232-5-eng-GB/What-next-for-Lipton-and-PG-Tips-Unilever-s-strategic-tea-review_wrbm_large.jpg" border=3 height=100 width=100></td></img></td>
+                    <td>Tea</td>
+                    <td>20</td>
+                </tr>
+              </table>
+              </div>
+    </div>
+    <h1>"The value for number is: " <span id="myText"></span></h1>
+    <script>
+        var dict = { 'Paneer tikka masala' : 50 , 
+                 'Masala dosa' : 30 , 
+                 'Tea' : 20,
+                 'Fried rice': 68           
+               };
+        var my_liste=[];  
+        var total=0; 
+        function addRow()
+                {
+                    // get input values
+                    var item = document.getElementById('foods').value;
+                      
+                      // get the html table
+                      // 0 = the first table
+                      var table = document.getElementsByTagName('table')[0];
+                      
+                      // add new empty row to the table
+                      // 0 = in the top 
+                      // table.rows.length = the end
+                      // table.rows.length/2+1 = the center
+                      var newRow = table.insertRow(table.rows.length);
+                      
+                      // add cells to the row
+                      var cel1 = newRow.insertCell(0);
+                      // add values to the cells
+                      cel1.innerHTML = item;
+                } 
+            function handlebill()
+            {            
+                    var table = document.getElementsByTagName('table')[0];
+                    var rows = table.rows;
+                    for (var i = 1; i < rows.length; i++) {
+                          var rowText = rows[i].firstChild.textContent;
+                           my_liste[my_liste.length] = rowText;
+                    }
+                    for(var i=0;i<my_liste.length;i++){
+                        for (let keys of Object.keys(dict)){
+                            if (my_liste[i]==keys){
+                                total+=dict[keys]
+                            }
+                        }
+                    }
+                    document.getElementById("myText").innerHTML = total; 
+                    console.log(my_liste)
+                    console.log(total)
             }
-
-ejs{
-    font-family: 'Marko One', sans-serif;
-}
-
-img{
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #eee;
-    padding: 0 1.5px;
-}
-
-.blog-post{
-    width: 100%;
-    max-width: 80rem;
-    padding: 5 rem;
-    background-color: #fff;
-    box-shadow: 0 1.4rem 8rem rgba(0, 0, 0, .2);
-    display: flex;
-    align-items: center;
-    border-radius: .8rem;
-}
-
-.blog-post__img{
-    min-width: 35rem;
-    max-width: 35rem;
-    height: 20rem;
-    transform: translateX(-8rem);
-    position: relative;
-}
-
-.blog-post__img img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    border-radius: .8rem;
-}
-
-.blog-post__img::before{
-    content: '';
-    width: 100%;
-    height: 100%;
-    top: 30rem;
-    left: 30rem;
-    background: linear-gradient(to right, rgba(79, 172,254,.8),
-    rgba(0,242,254. 0.8));
-    box-shadow: 0.5rem 0.5rem 3rem 1px rgba(0,0,0,.05);
-    border-radius: 0.8rem;
-}
-
-.blog-post__date span{
-    display: block;
-    content: rgba(0,0,0,.5);
-    font-size: 1.6rem;
-    font-weight: 600;
-    margin: .5rem 0;
-}
-
-.blog-post__title{
-    font-size: 2.5rem;
-    margin: 1.5rem 0 2rem;
-    text-transform: uppercase;
-    color: #4facfe;
-}
-
-.blog-post__text{
-    margin-bottom: 2rem;
-    font-size: 1.5rem;
-    color: rgba(0, 0, 0, .7);
-}
-    </style>
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://www.holidify.com/images/bgImages/BANGALORE.jpg" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Bangalore tour</h1>
-            <p class="blog-post__text">
-                Package Id: 20 <br>
-                Hotel: The Oterra<br>
-                Tourist places: Vidhana Soudha. MG Road, Bangalore Palace<br>
-                Amount: 1900 for 1 night<br>
-            </p>
-            
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://www.indiaaheadnews.com/wp-content/uploads/2019/07/Hyderabad.jpg" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Hyderabad Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 21<br>
-                Hotel: Trident Hotel<br>
-                Tourist places: Golconda Fort, Charminar, Hussain Sagar<br>
-                Amount: 5440 for 5 night<br>
-            </p>
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://www.culturalindia.net/iliimages/Mysore-Palace-ili-41-img-1.jpg" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Mysore Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 22<br>
-                Hotel: Grand Mecure<br>
-                Tourist places: Brindavan Gardens, Mysore Zoo, Mysore Palace<br>
-                Amount: 1400 for 1 night<br>
-            </p>
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://lp-cms-production.imgix.net/2019-06/75243789.jpg?fit=crop&q=40&sharp=10&vib=20&auto=format&ixlib=react-8.6.4" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Agra Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 23<br>
-                Hotel: ITC Mughal<br>
-                Tourist places: Agra Fort, Taj Mahal<br>
-                Amount: 6700 for 4 nights<br>
-            </p>
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://www.nativeplanet.com/img/2018/11/kochifacts-1542009080.jpg" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Kochi Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 24<br>
-                Hotel: Le Meridian<br>
-                Tourist places: Cherrai Beach, Fort Kochi, Mattancherry Palace<br>
-                Amount: 4231 for 2 night<br>
-            </p>
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0UC-GKpnUlvTq3bwSG7bvWiwNEY2fGmQqmOPoSPFKLpSDKcDX&s" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Mumbai Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 25<br>
-                Hotel: Trident Hotel<br>
-                Tourist places: Elephanta Caves, Gateway Of India<br>
-                Amount: 4500 for 2 night<br>
-            </p>
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://lp-cms-production.imgix.net/2019-06/80840681.jpg?fit=crop&q=40&sharp=10&vib=20&auto=format&ixlib=react-8.6.4" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Kolkata Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 26<br>
-                Hotel: ITC Sonar<br>
-                Tourist places: Victoria Memorial, Indian Museum, Howrah Bridge<br>
-                Amount: 100000 for 5 nights<br>
-            </p>
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://surattourism.in/images/places-to-visit/header/shabari-dham-surat-tourism-entry-fee-timings-holidays-reviews-header.jpg" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Surat Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 27<br>
-                Hotel: Marriott Hotel<br>
-                Tourist places: Gopi Talav, Surat Circle, Dumas Beach<br>
-                Amount: 5500 for 3 nights<br>
-            </p>
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLQQezD9Q1ODRRxxa9VU1XONPQ3RlJvNrPUJ_vm8F-loyZFvyw&s" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Ahmedabad Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 28<br>
-                Hotel: Shahpura House<br>
-                Tourist places: Adalaj Stepwell, Kankaria LAke, Sabarmati Ashram<br>
-                Amount: 3200 for 1 night<br>
-            </p>
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8j7kNW1eoSmtwXhqT7fFQ6L2Rl4oZ67yztOsG4UQ4hGBBllQl&s" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Margao Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 29<br>
-                Hotel: Hotel City Comfort<br>
-                Tourist places: Zalor Beach, Kolva Beach, Holy Spirit Church<br>
-                Amount: 5500 for 4 nights<br>
-            </p>
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6RuWlG81ftPM3glyh0Y0J31NcVgzKRFwFgUfiXvmN22Mfg6ot&s" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">New Delhi Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 30<br>
-                Hotel: Vivanta <br>
-                Tourist places: Humayun Tomb, Red Fort, India Gate<br>
-                Amount: 6500 for 4 nights<br>
-            </p>
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://c1.staticflickr.com/4/3819/14302322374_aa25c90f53_b.jpg" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Chennai Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 31<br>
-                Hotel: Goldfinch Road<br>
-                Tourist places: Ashtalaxmi Temple, Government Museum, Breezy Beech<br>
-                Amount: 9000 for 6 nights<br>
-            </p>
-        </div>
-    </div>
-
-    <div class="blog-post">
-        <div class="blog-post__img">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2lxiT_R6BI2mg5OyEjlkqkT00WTF5uqj1556cZDIzw5rX4jTkaQ&s" alt="">
-        </div>
-        <div class="blog-post__info">
-            <h1 class="blog-post__title">Kanyakumari Tour</h1>
-            <p class="blog-post__text">
-                Package Id: 32<br>
-                Hotel: The Gopivinas Grand<br>
-                Tourist places: Thiruvalluvar Statue, Kanyakumari Beach<br>
-                Amount: 4500 fr 2 nights<br>
-            </p>
-        </div>
-    </div>
-        <button type="submit"><a href=/users/booking>Book</button>
-    </div>
-    
+            function codeAddress() {
+                 var select = document.getElementById("foods"); 
+                for(let keys of Object.keys(dict)) {
+                    var el = document.createElement("option");
+                    el.text = keys;
+                    el.value = keys;
+                    select.add(el);
+            }
+        }
+        window.onload = codeAddress;              
+</script>
